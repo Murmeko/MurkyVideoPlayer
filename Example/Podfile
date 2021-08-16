@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'MurkyVideoPlayer_Example' do
+  pod 'MurkyVideoPlayer', :path => '../'
+
+  target 'MurkyVideoPlayer_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
