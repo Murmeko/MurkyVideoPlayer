@@ -13,7 +13,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 | Platform | Installation |
 | --- | --- |
-| iOS 12.0+ | [CocoaPods](#cocoapods) |
+| iOS 13.0+ | [CocoaPods](#cocoapods) |
 
 ## Installation
 

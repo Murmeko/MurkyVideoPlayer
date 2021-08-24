@@ -11,7 +11,7 @@
 		42373EF084A9674F46415FEB4FB75A89 /* Pods-MurkyVideoPlayer_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95F376CC7F2C1CC82CABB623A5E93CEF /* Pods-MurkyVideoPlayer_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		459578085F88B1F7E28B96994C6B0873 /* Pods-MurkyVideoPlayer_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8361C9085EA8E03A81AE8B6173B12D /* Pods-MurkyVideoPlayer_Tests-dummy.m */; };
 		7947B2D47E244A4403BE48D30C8F7B47 /* MurkyVideoPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC7B45B0F486A92BD3DD7A9B511449A /* MurkyVideoPlayer-dummy.m */; };
-		7E3A374E3B18D4E35BBE709642F22148 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD1F6ECA2057CA97A7E8B1C6E6486B /* ReplaceMe.swift */; };
+		7E3A374E3B18D4E35BBE709642F22148 /* MurkyVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD1F6ECA2057CA97A7E8B1C6E6486B /* MurkyVideoPlayer.swift */; };
 		A45D8AB9D216DE6D76877E94DFF9E58B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		BC240B8582614E37877FE3EE5DC7202C /* Pods-MurkyVideoPlayer_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F36C80EE4947DC40B320A16F942AD3E5 /* Pods-MurkyVideoPlayer_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C6DAC3BEB269BE784C6766DF0C83F441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -41,10 +41,10 @@
 		12E7B5108585875E47320E5EC8E1BB1E /* Pods-MurkyVideoPlayer_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MurkyVideoPlayer_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		191D5B29C027F1E684C3BC56B66ACF6B /* Pods-MurkyVideoPlayer_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MurkyVideoPlayer_Tests-Info.plist"; sourceTree = "<group>"; };
 		1AC4A6B69918C60A3B9D1BCA83F2BAC1 /* Pods-MurkyVideoPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MurkyVideoPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };
-		25D92173A7226C7C82D92174F359DD56 /* MurkyVideoPlayer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MurkyVideoPlayer.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		25D92173A7226C7C82D92174F359DD56 /* MurkyVideoPlayer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MurkyVideoPlayer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		42B4918154A835A21478A85F70048DAB /* Pods-MurkyVideoPlayer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MurkyVideoPlayer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4ED8F19CE1FA75E22D46C0A0134D41EC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		55DD1F6ECA2057CA97A7E8B1C6E6486B /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = MurkyVideoPlayer/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
+		55DD1F6ECA2057CA97A7E8B1C6E6486B /* MurkyVideoPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MurkyVideoPlayer.swift; path = MurkyVideoPlayer/Classes/MurkyVideoPlayer.swift; sourceTree = "<group>"; };
 		59BEEB61FDB2D658F40680EB81F6EFA1 /* Pods_MurkyVideoPlayer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MurkyVideoPlayer_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB8F35561EB6A433DA2833C4C968F37 /* Pods-MurkyVideoPlayer_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MurkyVideoPlayer_Tests.modulemap"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -122,7 +122,7 @@
 		3DDDA7AF6C9B233FE7A4031B0B476F85 /* MurkyVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				55DD1F6ECA2057CA97A7E8B1C6E6486B /* ReplaceMe.swift */,
+				55DD1F6ECA2057CA97A7E8B1C6E6486B /* MurkyVideoPlayer.swift */,
 				72C808D93C4DB9F9646F11987CD73BCE /* Pod */,
 				539596C278BF9C5D250AA3966255FCEB /* Support Files */,
 			);
@@ -315,13 +315,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1250;
-				TargetAttributes = {
-					E19DDF2D50A5F599E706AB2BDF4D48DD = {
-						LastSwiftMigration = 1250;
-					};
-				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -373,7 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7947B2D47E244A4403BE48D30C8F7B47 /* MurkyVideoPlayer-dummy.m in Sources */,
-				7E3A374E3B18D4E35BBE709642F22148 /* ReplaceMe.swift in Sources */,
+				7E3A374E3B18D4E35BBE709642F22148 /* MurkyVideoPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +406,42 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		25AD9454612BF454A1E3DC4CD4FA8C6D /* Debug */ = {
+		031F64468E2784DC015471A6DBE00510 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AC4A6B69918C60A3B9D1BCA83F2BAC1 /* Pods-MurkyVideoPlayer_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -464,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -477,41 +507,12 @@
 			};
 			name = Debug;
 		};
-		25CC7E61BC8C47F2FE93EB97AF14FDC9 /* Debug */ = {
+		3EA4DD14DB31533BE152ECBD58F41F48 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BA4ABC2CAD326F1DB987E2AF8A2DF78 /* MurkyVideoPlayer.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer.modulemap";
-				PRODUCT_MODULE_NAME = MurkyVideoPlayer;
-				PRODUCT_NAME = MurkyVideoPlayer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		55D1AA897B7F64ECA3FCDC34A3D451D7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42B4918154A835A21478A85F70048DAB /* Pods-MurkyVideoPlayer_Tests.debug.xcconfig */;
+			baseConfigurationReference = 0C96AC124C2CB7AE5F9436B63DB9893D /* Pods-MurkyVideoPlayer_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -520,12 +521,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -533,77 +534,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		58EC8D41F0C35373D59996885AD4D2A4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DF85840977A15AD63517BF27453A6F4 /* Pods-MurkyVideoPlayer_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		68E774100CFC67236E5EC22299BD14AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1B01746660E491710FAE4336726D993 /* MurkyVideoPlayer.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer.modulemap";
-				PRODUCT_MODULE_NAME = MurkyVideoPlayer;
-				PRODUCT_NAME = MurkyVideoPlayer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		CA547D2C7E9A8A153DC2B27FBE00B112 /* Release */ = {
+		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -653,7 +591,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -664,11 +602,11 @@
 			};
 			name = Release;
 		};
-		DF532A375E817061F84DAA41DCEE1372 /* Debug */ = {
+		6408E484CBE532A9018E0495D74C24CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C96AC124C2CB7AE5F9436B63DB9893D /* Pods-MurkyVideoPlayer_Example.debug.xcconfig */;
+			baseConfigurationReference = 7BA4ABC2CAD326F1DB987E2AF8A2DF78 /* MurkyVideoPlayer.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -677,30 +615,30 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer.modulemap";
+				PRODUCT_MODULE_NAME = MurkyVideoPlayer;
+				PRODUCT_NAME = MurkyVideoPlayer;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.4;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		E5CCB93A3DCF5C09B352B8B51EFF654F /* Release */ = {
+		81BAC4F72B365E407C94FE9351F48315 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1AC4A6B69918C60A3B9D1BCA83F2BAC1 /* Pods-MurkyVideoPlayer_Example.release.xcconfig */;
+			baseConfigurationReference = 8DF85840977A15AD63517BF27453A6F4 /* Pods-MurkyVideoPlayer_Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -709,12 +647,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -722,6 +660,39 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B9B1BF1ED3679F47A36A57BA29DE1261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1B01746660E491710FAE4336726D993 /* MurkyVideoPlayer.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer.modulemap";
+				PRODUCT_MODULE_NAME = MurkyVideoPlayer;
+				PRODUCT_NAME = MurkyVideoPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.4;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -729,14 +700,48 @@
 			};
 			name = Release;
 		};
+		EBC68F28214533E5D6B6C14AAC3FDC11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42B4918154A835A21478A85F70048DAB /* Pods-MurkyVideoPlayer_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				25AD9454612BF454A1E3DC4CD4FA8C6D /* Debug */,
-				CA547D2C7E9A8A153DC2B27FBE00B112 /* Release */,
+				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
+				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -744,8 +749,8 @@
 		52776024338060EF78602429DC953644 /* Build configuration list for PBXNativeTarget "Pods-MurkyVideoPlayer_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF532A375E817061F84DAA41DCEE1372 /* Debug */,
-				E5CCB93A3DCF5C09B352B8B51EFF654F /* Release */,
+				3EA4DD14DB31533BE152ECBD58F41F48 /* Debug */,
+				031F64468E2784DC015471A6DBE00510 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -753,8 +758,8 @@
 		9B3A272329384A957D30B4AEACCD63B0 /* Build configuration list for PBXNativeTarget "Pods-MurkyVideoPlayer_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				55D1AA897B7F64ECA3FCDC34A3D451D7 /* Debug */,
-				58EC8D41F0C35373D59996885AD4D2A4 /* Release */,
+				EBC68F28214533E5D6B6C14AAC3FDC11 /* Debug */,
+				81BAC4F72B365E407C94FE9351F48315 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -762,8 +767,8 @@
 		F36A67962B1520B4EEABF332F70EC2D0 /* Build configuration list for PBXNativeTarget "MurkyVideoPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				25CC7E61BC8C47F2FE93EB97AF14FDC9 /* Debug */,
-				68E774100CFC67236E5EC22299BD14AB /* Release */,
+				6408E484CBE532A9018E0495D74C24CF /* Debug */,
+				B9B1BF1ED3679F47A36A57BA29DE1261 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

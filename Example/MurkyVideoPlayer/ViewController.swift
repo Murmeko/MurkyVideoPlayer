@@ -7,9 +7,19 @@
 //
 
 import UIKit
+import MurkyVideoPlayer
 
 class ViewController: UIViewController {
-
+    
+    var launcher = MVP()
+    
+    @IBAction func doNotPressButton(_ sender: Any) {
+        launcher.showVideoPlayer()
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,6 +29,4 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
-
