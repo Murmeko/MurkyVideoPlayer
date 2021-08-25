@@ -20,6 +20,8 @@ class MurkyVideoPlayer: UIView {
         case fourthQuality
     }
     
+    // MARK: - Video Quality
+    
     public func setQualityNames(firstName: String?, secondName: String?, thirdName: String?, fourthName: String?) {
         if let safeFirstName = firstName {
             playerFirstQualityButton.setTitle(safeFirstName, for: .normal)
@@ -69,6 +71,8 @@ class MurkyVideoPlayer: UIView {
         }
     }
     
+    //MARK: - UI Elements
+    
     func setSliderColor(miniumTrackTintColor: UIColor?, thumbColor: UIColor?, maximumTrackTintColor: UIColor?) {
         if let safeMinimumTrackTintColor = miniumTrackTintColor {
             playerSlider.minimumTrackTintColor = safeMinimumTrackTintColor
@@ -103,6 +107,9 @@ class MurkyVideoPlayer: UIView {
             self.playerQualityStackView.alpha = 1
             self.playerDurationLabel.alpha = 1
             self.playerCurrentTimeLabel.alpha = 1
+            self.playerForwardButton.alpha = 1
+            self.PlayerBackwardButton.alpha = 1
+            self.playerDownloadButton.alpha = 1
             self.playerGradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         } completion: { completedAnimation in
             self.controlsShowing = true
@@ -116,6 +123,9 @@ class MurkyVideoPlayer: UIView {
             self.playerQualityStackView.alpha = 0
             self.playerDurationLabel.alpha = 0
             self.playerCurrentTimeLabel.alpha = 0
+            self.playerForwardButton.alpha = 0
+            self.PlayerBackwardButton.alpha = 0
+            self.playerDownloadButton.alpha = 0
             self.playerGradientLayer.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor]
         } completion: { completedAnimation in
             self.controlsShowing = false
@@ -138,6 +148,17 @@ class MurkyVideoPlayer: UIView {
         aiv.translatesAutoresizingMaskIntoConstraints = false
         aiv.startAnimating()
         return aiv
+    }()
+    
+    let playerDownloadButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.system)
+        let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
+        button.setImage(image, for: UIControl.State.normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     let playerFirstQualityButton: UIButton = {
@@ -243,6 +264,72 @@ class MurkyVideoPlayer: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    let playerForwardButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.system)
+        let config = UIImage.SymbolConfiguration.init(pointSize: 40, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "goforward.15", in: nil, with: config)
+        button.setImage(image, for: UIControl.State.normal)
+        button.tintColor = .white
+        button.isHidden = false
+        button.addTarget(self, action: #selector(handleForwards), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    @objc func handleForwards() {
+        if let duration = player?.currentItem?.duration {
+            let durationInSeconds = CMTimeGetSeconds(duration)
+            let currentTimeInSeconds = CMTimeGetSeconds((player?.currentItem?.currentTime())!)
+            var seekTime: CMTime {
+                if durationInSeconds - currentTimeInSeconds >= 15 {
+                    let value = Float64(15) + currentTimeInSeconds
+                    let temp = CMTime(value: Int64(value), timescale: 1)
+                    return temp
+                } else {
+                    let value = durationInSeconds - currentTimeInSeconds
+                    let temp = CMTime(value: Int64(value), timescale: 1)
+                    return temp
+                }
+            }
+            player?.seek(to: seekTime, completionHandler: { completedSeek in
+                
+            })
+        }
+    }
+    
+    let PlayerBackwardButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.system)
+        let config = UIImage.SymbolConfiguration.init(pointSize: 40, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "gobackward.15", in: nil, with: config)
+        button.setImage(image, for: UIControl.State.normal)
+        button.tintColor = .white
+        button.isHidden = false
+        button.addTarget(self, action: #selector(handleBackwards), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    @objc func handleBackwards() {
+        if let duration = player?.currentItem?.duration {
+            let durationInSeconds = CMTimeGetSeconds(duration)
+            let currentTimeInSeconds = CMTimeGetSeconds((player?.currentItem?.currentTime())!)
+            var seekTime: CMTime {
+                if durationInSeconds - currentTimeInSeconds >= 15 {
+                    let value = currentTimeInSeconds - Float64(15)
+                    let temp = CMTime(value: Int64(value), timescale: 1)
+                    return temp
+                } else {
+                    let value = durationInSeconds - currentTimeInSeconds
+                    let temp = CMTime(value: Int64(value), timescale: 1)
+                    return temp
+                }
+            }
+            player?.seek(to: seekTime, completionHandler: { completedSeek in
+                
+            })
+        }
+    }
     
     @objc func handlePlayPause() {
         if isPlaying == true {
@@ -393,14 +480,20 @@ class MurkyVideoPlayer: UIView {
         playerControlsContainerButton.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         playerControlsContainerButton.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         
+        playerControlsContainerView.addSubview(playerDownloadButton)
+        playerDownloadButton.topAnchor.constraint(equalTo: topAnchor, constant: +10).isActive = true
+        playerDownloadButton.leftAnchor.constraint(equalTo: leftAnchor, constant: +10).isActive = true
+        playerDownloadButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        playerDownloadButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        
         playerQualityStackView.insertArrangedSubview(playerFourthQualityButton, at: 0)
         playerQualityStackView.insertArrangedSubview(playerThirdQualityButton, at: 1)
         playerQualityStackView.insertArrangedSubview(playerSecondQualityButton, at: 2)
         playerQualityStackView.insertArrangedSubview(playerFirstQualityButton, at: 3)
         
         playerControlsContainerView.addSubview(playerQualityStackView)
-        playerQualityStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        playerQualityStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -3).isActive = true
+        playerQualityStackView.topAnchor.constraint(equalTo: topAnchor, constant: +5).isActive = true
+        playerQualityStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -5).isActive = true
         playerQualityStackView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         playerControlsContainerView.addSubview(playerPlayPauseButton)
@@ -408,6 +501,18 @@ class MurkyVideoPlayer: UIView {
         playerPlayPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         playerPlayPauseButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         playerPlayPauseButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        playerControlsContainerView.addSubview(playerForwardButton)
+        playerForwardButton.leftAnchor.constraint(equalTo: playerPlayPauseButton.rightAnchor, constant: +30).isActive = true
+        playerForwardButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        playerForwardButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        playerForwardButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        playerControlsContainerView.addSubview(PlayerBackwardButton)
+        PlayerBackwardButton.rightAnchor.constraint(equalTo: playerPlayPauseButton.leftAnchor, constant: -30).isActive = true
+        PlayerBackwardButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        PlayerBackwardButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        PlayerBackwardButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         playerControlsContainerView.addSubview(playerCurrentTimeLabel)
         playerCurrentTimeLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
