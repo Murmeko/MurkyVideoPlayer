@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class MurkyVideoPlayer: UIView {
+class MurkyVideoPlayer: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDownloadDelegate {
     
     var player: AVPlayer?
     var isPlaying = false
@@ -12,6 +12,9 @@ class MurkyVideoPlayer: UIView {
     var secondUrl: URL?
     var thirdUrl: URL?
     var fourthUrl: URL?
+    var downloadTask: URLSessionDownloadTask?
+    var resumeData: Data?
+    private lazy var urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
     
     enum qualities {
         case firstQuality
@@ -87,6 +90,8 @@ class MurkyVideoPlayer: UIView {
         }
     }
     
+    //MARK: - UI Elements - Controls
+    
     let playerControlsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black
@@ -143,6 +148,8 @@ class MurkyVideoPlayer: UIView {
         }
     }
     
+    //MARK: - UI Elements - Activity Indicator
+    
     let playerActivityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         aiv.translatesAutoresizingMaskIntoConstraints = false
@@ -150,16 +157,46 @@ class MurkyVideoPlayer: UIView {
         return aiv
     }()
     
+    //MARK: - UI Elements - Download Button
+    
     let playerDownloadButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.system)
         let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
         let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
         button.setImage(image, for: UIControl.State.normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleDownload), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    @objc func handleDownload() {
+        var downloadUrl: URL? {
+            switch selectedQuality {
+            case .firstQuality:
+                return firstUrl
+            case .secondQuality:
+                return secondUrl
+            case .thirdQuality:
+                return thirdUrl
+            case .fourthQuality:
+                return fourthUrl
+            case .none:
+                if let safeFirstUrl = firstUrl {
+                    return safeFirstUrl
+                } else if let safeSecondUrl = secondUrl {
+                    return safeSecondUrl
+                } else if let safeThirdUrl = thirdUrl {
+                    return safeThirdUrl
+                } else if let safeFourthUrl = fourthUrl {
+                    return safeFourthUrl
+                } else {
+                    return URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8")
+                }
+            }
+        }
+        startDownload(url: downloadUrl!)
+    }
     
     let playerFirstQualityButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.system)
@@ -566,6 +603,43 @@ class MurkyVideoPlayer: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+//MARK:- Downloader
+
+extension MurkyVideoPlayer {
+    private func startDownload(url: URL) {
+        let downloadTask = urlSession.downloadTask(with: url)
+        downloadTask.resume()
+        self.downloadTask = downloadTask
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+         if downloadTask == self.downloadTask {
+            let calculatedProgress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+            print(calculatedProgress)
+            DispatchQueue.main.async {
+                /*self.progressLabel.text = self.percentFormatter.string(from:
+                    NSNumber(value: calculatedProgress))*/
+            }
+        }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        print("Download complete.")
+        let documentsURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let savedURL = documentsURL.appendingPathComponent(secondUrl!.lastPathComponent)
+        UISaveVideoAtPathToSavedPhotosAlbum(savedURL.relativePath, nil, nil, nil)
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let safeError = error {
+            let userInfo = (safeError as NSError).userInfo
+            if let resumeData = userInfo[NSURLSessionDownloadTaskResumeData] as? Data {
+                self.resumeData = resumeData
+            }
+        }
     }
 }
 
