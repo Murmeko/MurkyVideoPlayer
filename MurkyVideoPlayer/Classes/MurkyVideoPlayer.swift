@@ -291,11 +291,10 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
     let playerSlider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
-        let dhColor = UIColor.init(red: 230.0/255.0, green: 145.0/255.0, blue: 90.0/255.0, alpha: 1.0)
-        slider.minimumTrackTintColor = dhColor
+        slider.minimumTrackTintColor = UIColor.init(red: 64.0/255.0, green: 0.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         slider.maximumTrackTintColor = .white
         let thumbConfig = UIImage.SymbolConfiguration.init(pointSize: 15, weight: UIImage.SymbolWeight.regular)
-        let thumbImage = UIImage(named: "circle.fill", in: nil, with: thumbConfig)?.withTintColor(dhColor, renderingMode: UIImage.RenderingMode.alwaysOriginal)
+        let thumbImage = UIImage(named: "circle.fill", in: nil, with: thumbConfig)?.withTintColor(UIColor.init(red: 64.0/255.0, green: 0.0/255.0, blue: 255.0/255.0, alpha: 1.0), renderingMode: UIImage.RenderingMode.alwaysOriginal)
         slider.setThumbImage(thumbImage, for: .normal)
         
         slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
