@@ -9,6 +9,7 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
     var playerWidth: CGFloat = 0
     var playerHeight: CGFloat = 0
     var playerConstraints: [NSLayoutConstraint]?
+    var controlsTimer: Timer?
     var isPlaying = false
     var isFullscreen = false
     var controlsShowing = true
@@ -140,7 +141,7 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         }
     }
     
-    func hideControls() {
+    @objc func hideControls() {
         UIView.animate(withDuration: 0.3) {
             self.playerSlider.alpha = 0
             self.playerPlayPauseButton.alpha = 0
@@ -369,6 +370,7 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
             self.playerFrame = CGRect(x: 0, y: 0, width: playerHeight, height: playerHeight/16*9)
             super.init(frame: CGRect(x: 0, y: 0, width: playerHeight, height: playerHeight/16*9))
         }
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
     }
     
     public required init?(coder: NSCoder) {
@@ -378,17 +380,19 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
 
 extension MVP {
     @objc func handleControlsContainerButton() {
-        if controlsShowing == true {
+        if controlsShowing {
+            controlsTimer?.invalidate()
             self.hideControls()
         } else {
             self.showControls()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                self.hideControls()
-            }
+            controlsTimer?.invalidate()
+            controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         }
     }
     
     @objc func handleDownload() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         let downloadUrl = getVideoURL()
         if downloadCancelled {
             if let safeResumeData = resumeData {
@@ -406,18 +410,26 @@ extension MVP {
     }
     
     @objc func handleFirstQuality() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         handleQuality(quality: .firstQuality)
     }
     
     @objc func handleSecondQuality() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         handleQuality(quality: .secondQuality)
     }
     
     @objc func handleThirdQuality() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         handleQuality(quality: .thirdQuality)
     }
     
     @objc func handleFourthQuality() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         handleQuality(quality: .fourthQuality)
     }
     
@@ -454,6 +466,8 @@ extension MVP {
     }
     
     @objc func handleForwards() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         if let duration = player?.currentItem?.duration {
             let durationInSeconds = CMTimeGetSeconds(duration)
             let currentTimeInSeconds = CMTimeGetSeconds((player?.currentItem?.currentTime())!)
@@ -475,6 +489,8 @@ extension MVP {
     }
     
     @objc func handleBackwards() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         if let duration = player?.currentItem?.duration {
             let durationInSeconds = CMTimeGetSeconds(duration)
             let currentTimeInSeconds = CMTimeGetSeconds((player?.currentItem?.currentTime())!)
@@ -496,6 +512,8 @@ extension MVP {
     }
     
     @objc func handlePlayPause() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         if isPlaying == true {
             player?.pause()
             let config = UIImage.SymbolConfiguration.init(pointSize: 50, weight: UIImage.SymbolWeight.ultraLight)
@@ -511,6 +529,8 @@ extension MVP {
     }
     
     @objc func handleSliderChange() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         if let duration = player?.currentItem?.duration {
             let totalSeconds = CMTimeGetSeconds(duration)
             let value = Float64(playerSlider.value) * totalSeconds
@@ -522,6 +542,8 @@ extension MVP {
     }
     
     @objc func handleFullscreen() {
+        controlsTimer?.invalidate()
+        controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
         if UIApplication.shared.statusBarOrientation.isPortrait {
             let value = UIInterfaceOrientation.landscapeRight.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")

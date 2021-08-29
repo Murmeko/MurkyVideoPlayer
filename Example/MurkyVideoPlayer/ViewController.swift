@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     
     func updateFrame() {
         self.playerView.frame = view.frame
+        self.playerView.topAnchor.constraint(equalTo: view.topAnchor,constant: view.safeAreaInsets.top).isActive = true
     }
     
     override var prefersStatusBarHidden: Bool {
