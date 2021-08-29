@@ -1,0 +1,781 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		365723AA9614BB2F3066CB0C3C29FA65 /* Pods-MurkyVideoPlayer_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7BD4E8E8E87AF5571FCE79D75F607D /* Pods-MurkyVideoPlayer_Example-dummy.m */; };
+		42373EF084A9674F46415FEB4FB75A89 /* Pods-MurkyVideoPlayer_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95F376CC7F2C1CC82CABB623A5E93CEF /* Pods-MurkyVideoPlayer_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		459578085F88B1F7E28B96994C6B0873 /* Pods-MurkyVideoPlayer_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8361C9085EA8E03A81AE8B6173B12D /* Pods-MurkyVideoPlayer_Tests-dummy.m */; };
+		7947B2D47E244A4403BE48D30C8F7B47 /* MurkyVideoPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC7B45B0F486A92BD3DD7A9B511449A /* MurkyVideoPlayer-dummy.m */; };
+		7E3A374E3B18D4E35BBE709642F22148 /* MurkyVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DD1F6ECA2057CA97A7E8B1C6E6486B /* MurkyVideoPlayer.swift */; };
+		A45D8AB9D216DE6D76877E94DFF9E58B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		BC240B8582614E37877FE3EE5DC7202C /* Pods-MurkyVideoPlayer_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F36C80EE4947DC40B320A16F942AD3E5 /* Pods-MurkyVideoPlayer_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6DAC3BEB269BE784C6766DF0C83F441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		CB7DD080D51E88E43CA10C76B03F4F0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		CF754C38294BC74909E93A99B7C103B0 /* MurkyVideoPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CBD825A656AAA9071BA78303E0B9358 /* MurkyVideoPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5C2025D1479EC7975C1A91F8F23BF139 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1835EF36D8AD3F88CC796B05F8EE5FEF;
+			remoteInfo = "Pods-MurkyVideoPlayer_Example";
+		};
+		990F85D1954EDAAD41B34810FE195AD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E19DDF2D50A5F599E706AB2BDF4D48DD;
+			remoteInfo = MurkyVideoPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C96AC124C2CB7AE5F9436B63DB9893D /* Pods-MurkyVideoPlayer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MurkyVideoPlayer_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		12E7B5108585875E47320E5EC8E1BB1E /* Pods-MurkyVideoPlayer_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MurkyVideoPlayer_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		191D5B29C027F1E684C3BC56B66ACF6B /* Pods-MurkyVideoPlayer_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MurkyVideoPlayer_Tests-Info.plist"; sourceTree = "<group>"; };
+		1AC4A6B69918C60A3B9D1BCA83F2BAC1 /* Pods-MurkyVideoPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MurkyVideoPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };
+		1BA4D17C26DAAEAF00FE3B67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Example/../Images.xcassets; sourceTree = "<group>"; };
+		25D92173A7226C7C82D92174F359DD56 /* MurkyVideoPlayer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MurkyVideoPlayer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		42B4918154A835A21478A85F70048DAB /* Pods-MurkyVideoPlayer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MurkyVideoPlayer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4ED8F19CE1FA75E22D46C0A0134D41EC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		55DD1F6ECA2057CA97A7E8B1C6E6486B /* MurkyVideoPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MurkyVideoPlayer.swift; path = MurkyVideoPlayer/Classes/MurkyVideoPlayer.swift; sourceTree = "<group>"; };
+		59BEEB61FDB2D658F40680EB81F6EFA1 /* Pods_MurkyVideoPlayer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MurkyVideoPlayer_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB8F35561EB6A433DA2833C4C968F37 /* Pods-MurkyVideoPlayer_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MurkyVideoPlayer_Tests.modulemap"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7BA4ABC2CAD326F1DB987E2AF8A2DF78 /* MurkyVideoPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MurkyVideoPlayer.debug.xcconfig; sourceTree = "<group>"; };
+		8CBD825A656AAA9071BA78303E0B9358 /* MurkyVideoPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MurkyVideoPlayer-umbrella.h"; sourceTree = "<group>"; };
+		8DF85840977A15AD63517BF27453A6F4 /* Pods-MurkyVideoPlayer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MurkyVideoPlayer_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		8F6655D13FDDCA53E1AFD931F887E985 /* MurkyVideoPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MurkyVideoPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95F376CC7F2C1CC82CABB623A5E93CEF /* Pods-MurkyVideoPlayer_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MurkyVideoPlayer_Tests-umbrella.h"; sourceTree = "<group>"; };
+		9C7BD4E8E8E87AF5571FCE79D75F607D /* Pods-MurkyVideoPlayer_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MurkyVideoPlayer_Example-dummy.m"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E742231D5834DCBC67055A013A24753 /* MurkyVideoPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MurkyVideoPlayer.modulemap; sourceTree = "<group>"; };
+		A1B01746660E491710FAE4336726D993 /* MurkyVideoPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MurkyVideoPlayer.release.xcconfig; sourceTree = "<group>"; };
+		A6DB9221C34E8DFBC8A953C7A80526E7 /* Pods-MurkyVideoPlayer_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MurkyVideoPlayer_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B0502185F35C0E8959B8AD8FD063F948 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B640640F39253FFE9BFEE1B58FE462A9 /* Pods-MurkyVideoPlayer_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MurkyVideoPlayer_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C28BC2350E4AFA8ED4B1E146DBE1EE64 /* MurkyVideoPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MurkyVideoPlayer-prefix.pch"; sourceTree = "<group>"; };
+		E04859F58F2E0658D9EF567A31A15D01 /* Pods-MurkyVideoPlayer_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MurkyVideoPlayer_Example-frameworks.sh"; sourceTree = "<group>"; };
+		E9B3527BA7466B9781A753DBD019C037 /* MurkyVideoPlayer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MurkyVideoPlayer-Info.plist"; sourceTree = "<group>"; };
+		EA01A7BDD78EAF6D30F0FA4127801616 /* Pods_MurkyVideoPlayer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MurkyVideoPlayer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB8361C9085EA8E03A81AE8B6173B12D /* Pods-MurkyVideoPlayer_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MurkyVideoPlayer_Tests-dummy.m"; sourceTree = "<group>"; };
+		EF4C3194218F24635846D1BBE43DA4C1 /* Pods-MurkyVideoPlayer_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MurkyVideoPlayer_Example-Info.plist"; sourceTree = "<group>"; };
+		F3336F049D99E2718C9002080B22FC53 /* Pods-MurkyVideoPlayer_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MurkyVideoPlayer_Example.modulemap"; sourceTree = "<group>"; };
+		F36C80EE4947DC40B320A16F942AD3E5 /* Pods-MurkyVideoPlayer_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MurkyVideoPlayer_Example-umbrella.h"; sourceTree = "<group>"; };
+		FB522C7C9E7FA1C903BEF4DF01F4630F /* Pods-MurkyVideoPlayer_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MurkyVideoPlayer_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		FBC7B45B0F486A92BD3DD7A9B511449A /* MurkyVideoPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MurkyVideoPlayer-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E4F1A4EE78C865882FD3CED62C7EA09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6DAC3BEB269BE784C6766DF0C83F441 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C20868C951B80F4B12468D611408FBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A45D8AB9D216DE6D76877E94DFF9E58B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7970C037DCEB8BBD0AF283A2C267D8A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB7DD080D51E88E43CA10C76B03F4F0A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1849338FDF958AAFCE6B2B34F6B40508 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F42466E76F13267E12FA93E5181F194 /* Pods-MurkyVideoPlayer_Example */,
+				E295EC0F5DE31111E6F3A2AF01CAFDE1 /* Pods-MurkyVideoPlayer_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		304A8FC8984EEA585F8B72836B91237C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F6655D13FDDCA53E1AFD931F887E985 /* MurkyVideoPlayer.framework */,
+				EA01A7BDD78EAF6D30F0FA4127801616 /* Pods_MurkyVideoPlayer_Example.framework */,
+				59BEEB61FDB2D658F40680EB81F6EFA1 /* Pods_MurkyVideoPlayer_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DDDA7AF6C9B233FE7A4031B0B476F85 /* MurkyVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				55DD1F6ECA2057CA97A7E8B1C6E6486B /* MurkyVideoPlayer.swift */,
+				1BA4D17C26DAAEAF00FE3B67 /* Images.xcassets */,
+				72C808D93C4DB9F9646F11987CD73BCE /* Pod */,
+				539596C278BF9C5D250AA3966255FCEB /* Support Files */,
+			);
+			name = MurkyVideoPlayer;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		43DEAA76AE7140EBE6083BBE245E3B5E /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3DDDA7AF6C9B233FE7A4031B0B476F85 /* MurkyVideoPlayer */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		539596C278BF9C5D250AA3966255FCEB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E742231D5834DCBC67055A013A24753 /* MurkyVideoPlayer.modulemap */,
+				FBC7B45B0F486A92BD3DD7A9B511449A /* MurkyVideoPlayer-dummy.m */,
+				E9B3527BA7466B9781A753DBD019C037 /* MurkyVideoPlayer-Info.plist */,
+				C28BC2350E4AFA8ED4B1E146DBE1EE64 /* MurkyVideoPlayer-prefix.pch */,
+				8CBD825A656AAA9071BA78303E0B9358 /* MurkyVideoPlayer-umbrella.h */,
+				7BA4ABC2CAD326F1DB987E2AF8A2DF78 /* MurkyVideoPlayer.debug.xcconfig */,
+				A1B01746660E491710FAE4336726D993 /* MurkyVideoPlayer.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/MurkyVideoPlayer";
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		72C808D93C4DB9F9646F11987CD73BCE /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				B0502185F35C0E8959B8AD8FD063F948 /* LICENSE */,
+				25D92173A7226C7C82D92174F359DD56 /* MurkyVideoPlayer.podspec */,
+				4ED8F19CE1FA75E22D46C0A0134D41EC /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		7F42466E76F13267E12FA93E5181F194 /* Pods-MurkyVideoPlayer_Example */ = {
+			isa = PBXGroup;
+			children = (
+				F3336F049D99E2718C9002080B22FC53 /* Pods-MurkyVideoPlayer_Example.modulemap */,
+				A6DB9221C34E8DFBC8A953C7A80526E7 /* Pods-MurkyVideoPlayer_Example-acknowledgements.markdown */,
+				12E7B5108585875E47320E5EC8E1BB1E /* Pods-MurkyVideoPlayer_Example-acknowledgements.plist */,
+				9C7BD4E8E8E87AF5571FCE79D75F607D /* Pods-MurkyVideoPlayer_Example-dummy.m */,
+				E04859F58F2E0658D9EF567A31A15D01 /* Pods-MurkyVideoPlayer_Example-frameworks.sh */,
+				EF4C3194218F24635846D1BBE43DA4C1 /* Pods-MurkyVideoPlayer_Example-Info.plist */,
+				F36C80EE4947DC40B320A16F942AD3E5 /* Pods-MurkyVideoPlayer_Example-umbrella.h */,
+				0C96AC124C2CB7AE5F9436B63DB9893D /* Pods-MurkyVideoPlayer_Example.debug.xcconfig */,
+				1AC4A6B69918C60A3B9D1BCA83F2BAC1 /* Pods-MurkyVideoPlayer_Example.release.xcconfig */,
+			);
+			name = "Pods-MurkyVideoPlayer_Example";
+			path = "Target Support Files/Pods-MurkyVideoPlayer_Example";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				43DEAA76AE7140EBE6083BBE245E3B5E /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				304A8FC8984EEA585F8B72836B91237C /* Products */,
+				1849338FDF958AAFCE6B2B34F6B40508 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E295EC0F5DE31111E6F3A2AF01CAFDE1 /* Pods-MurkyVideoPlayer_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5BB8F35561EB6A433DA2833C4C968F37 /* Pods-MurkyVideoPlayer_Tests.modulemap */,
+				B640640F39253FFE9BFEE1B58FE462A9 /* Pods-MurkyVideoPlayer_Tests-acknowledgements.markdown */,
+				FB522C7C9E7FA1C903BEF4DF01F4630F /* Pods-MurkyVideoPlayer_Tests-acknowledgements.plist */,
+				EB8361C9085EA8E03A81AE8B6173B12D /* Pods-MurkyVideoPlayer_Tests-dummy.m */,
+				191D5B29C027F1E684C3BC56B66ACF6B /* Pods-MurkyVideoPlayer_Tests-Info.plist */,
+				95F376CC7F2C1CC82CABB623A5E93CEF /* Pods-MurkyVideoPlayer_Tests-umbrella.h */,
+				42B4918154A835A21478A85F70048DAB /* Pods-MurkyVideoPlayer_Tests.debug.xcconfig */,
+				8DF85840977A15AD63517BF27453A6F4 /* Pods-MurkyVideoPlayer_Tests.release.xcconfig */,
+			);
+			name = "Pods-MurkyVideoPlayer_Tests";
+			path = "Target Support Files/Pods-MurkyVideoPlayer_Tests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0DFBC00D53EA6AAFF57AD53622F94F2D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF754C38294BC74909E93A99B7C103B0 /* MurkyVideoPlayer-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1ED939240C01F82E659FA780E69D1FFF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC240B8582614E37877FE3EE5DC7202C /* Pods-MurkyVideoPlayer_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DC3E83B186298FC02DEF51559D934BF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42373EF084A9674F46415FEB4FB75A89 /* Pods-MurkyVideoPlayer_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1835EF36D8AD3F88CC796B05F8EE5FEF /* Pods-MurkyVideoPlayer_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52776024338060EF78602429DC953644 /* Build configuration list for PBXNativeTarget "Pods-MurkyVideoPlayer_Example" */;
+			buildPhases = (
+				1ED939240C01F82E659FA780E69D1FFF /* Headers */,
+				E7170E5609F04083DBB89C659C99EB5F /* Sources */,
+				A7970C037DCEB8BBD0AF283A2C267D8A /* Frameworks */,
+				CC828EBA80EB29236286702C7A071241 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E0B5227F9C99951C8C192D48FEBDF239 /* PBXTargetDependency */,
+			);
+			name = "Pods-MurkyVideoPlayer_Example";
+			productName = "Pods-MurkyVideoPlayer_Example";
+			productReference = EA01A7BDD78EAF6D30F0FA4127801616 /* Pods_MurkyVideoPlayer_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A73424DDD08D9E3D7CCCF4B9470316AD /* Pods-MurkyVideoPlayer_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B3A272329384A957D30B4AEACCD63B0 /* Build configuration list for PBXNativeTarget "Pods-MurkyVideoPlayer_Tests" */;
+			buildPhases = (
+				2DC3E83B186298FC02DEF51559D934BF /* Headers */,
+				7B5DDE2DAB3393CD224576F5F8104A21 /* Sources */,
+				6C20868C951B80F4B12468D611408FBA /* Frameworks */,
+				B9A1383B18A3DF699BE53C83DAA4F611 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00172F4A9588F02D4D452E196735825B /* PBXTargetDependency */,
+			);
+			name = "Pods-MurkyVideoPlayer_Tests";
+			productName = "Pods-MurkyVideoPlayer_Tests";
+			productReference = 59BEEB61FDB2D658F40680EB81F6EFA1 /* Pods_MurkyVideoPlayer_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E19DDF2D50A5F599E706AB2BDF4D48DD /* MurkyVideoPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F36A67962B1520B4EEABF332F70EC2D0 /* Build configuration list for PBXNativeTarget "MurkyVideoPlayer" */;
+			buildPhases = (
+				0DFBC00D53EA6AAFF57AD53622F94F2D /* Headers */,
+				2675FDE16F096567FDCAE28A0C645874 /* Sources */,
+				5E4F1A4EE78C865882FD3CED62C7EA09 /* Frameworks */,
+				DC4416C67024265B5E891303BFCD7BBB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MurkyVideoPlayer;
+			productName = MurkyVideoPlayer;
+			productReference = 8F6655D13FDDCA53E1AFD931F887E985 /* MurkyVideoPlayer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1250;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 304A8FC8984EEA585F8B72836B91237C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E19DDF2D50A5F599E706AB2BDF4D48DD /* MurkyVideoPlayer */,
+				1835EF36D8AD3F88CC796B05F8EE5FEF /* Pods-MurkyVideoPlayer_Example */,
+				A73424DDD08D9E3D7CCCF4B9470316AD /* Pods-MurkyVideoPlayer_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B9A1383B18A3DF699BE53C83DAA4F611 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC828EBA80EB29236286702C7A071241 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC4416C67024265B5E891303BFCD7BBB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2675FDE16F096567FDCAE28A0C645874 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7947B2D47E244A4403BE48D30C8F7B47 /* MurkyVideoPlayer-dummy.m in Sources */,
+				7E3A374E3B18D4E35BBE709642F22148 /* MurkyVideoPlayer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B5DDE2DAB3393CD224576F5F8104A21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459578085F88B1F7E28B96994C6B0873 /* Pods-MurkyVideoPlayer_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7170E5609F04083DBB89C659C99EB5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				365723AA9614BB2F3066CB0C3C29FA65 /* Pods-MurkyVideoPlayer_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00172F4A9588F02D4D452E196735825B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-MurkyVideoPlayer_Example";
+			target = 1835EF36D8AD3F88CC796B05F8EE5FEF /* Pods-MurkyVideoPlayer_Example */;
+			targetProxy = 5C2025D1479EC7975C1A91F8F23BF139 /* PBXContainerItemProxy */;
+		};
+		E0B5227F9C99951C8C192D48FEBDF239 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MurkyVideoPlayer;
+			target = E19DDF2D50A5F599E706AB2BDF4D48DD /* MurkyVideoPlayer */;
+			targetProxy = 990F85D1954EDAAD41B34810FE195AD3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		031F64468E2784DC015471A6DBE00510 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1AC4A6B69918C60A3B9D1BCA83F2BAC1 /* Pods-MurkyVideoPlayer_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		3EA4DD14DB31533BE152ECBD58F41F48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C96AC124C2CB7AE5F9436B63DB9893D /* Pods-MurkyVideoPlayer_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		6408E484CBE532A9018E0495D74C24CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA4ABC2CAD326F1DB987E2AF8A2DF78 /* MurkyVideoPlayer.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer.modulemap";
+				PRODUCT_MODULE_NAME = MurkyVideoPlayer;
+				PRODUCT_NAME = MurkyVideoPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.4;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		81BAC4F72B365E407C94FE9351F48315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DF85840977A15AD63517BF27453A6F4 /* Pods-MurkyVideoPlayer_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B9B1BF1ED3679F47A36A57BA29DE1261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1B01746660E491710FAE4336726D993 /* MurkyVideoPlayer.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MurkyVideoPlayer/MurkyVideoPlayer.modulemap";
+				PRODUCT_MODULE_NAME = MurkyVideoPlayer;
+				PRODUCT_NAME = MurkyVideoPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.4;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EBC68F28214533E5D6B6C14AAC3FDC11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42B4918154A835A21478A85F70048DAB /* Pods-MurkyVideoPlayer_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
+				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52776024338060EF78602429DC953644 /* Build configuration list for PBXNativeTarget "Pods-MurkyVideoPlayer_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA4DD14DB31533BE152ECBD58F41F48 /* Debug */,
+				031F64468E2784DC015471A6DBE00510 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B3A272329384A957D30B4AEACCD63B0 /* Build configuration list for PBXNativeTarget "Pods-MurkyVideoPlayer_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBC68F28214533E5D6B6C14AAC3FDC11 /* Debug */,
+				81BAC4F72B365E407C94FE9351F48315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F36A67962B1520B4EEABF332F70EC2D0 /* Build configuration list for PBXNativeTarget "MurkyVideoPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6408E484CBE532A9018E0495D74C24CF /* Debug */,
+				B9B1BF1ED3679F47A36A57BA29DE1261 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

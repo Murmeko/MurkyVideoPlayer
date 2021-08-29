@@ -1,0 +1,6 @@
+framework module MurkyVideoPlayer {
+  umbrella header "MurkyVideoPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - MurkyVideoPlayer (0.1.0)
+
+DEPENDENCIES:
+  - MurkyVideoPlayer (from `../`)
+
+EXTERNAL SOURCES:
+  MurkyVideoPlayer:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MurkyVideoPlayer: 27c49926be9b5c0592f4ca23b6f175438ff7883b
+
+PODFILE CHECKSUM: 29d558f2feda286d82d2b29b6cce16eaf919d6fa
+
+COCOAPODS: 1.10.2
