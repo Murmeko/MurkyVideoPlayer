@@ -3,11 +3,14 @@ import UIKit
 import AVFoundation
 
 public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDownloadDelegate {
-    
     var player: AVPlayer?
+    var playerFrame: CGRect?
     var playerLayer: AVPlayerLayer?
+    var playerWidth: CGFloat = 0
+    var playerHeight: CGFloat = 0
     var playerConstraints: [NSLayoutConstraint]?
     var isPlaying = false
+    var isFullscreen = false
     var controlsShowing = true
     var selectedQuality: qualities?
     var firstUrl: URL?
@@ -57,10 +60,6 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         if let safeFourthURL = fourthURL {
             self.fourthUrl = safeFourthURL
         }
-        setupPlayer()
-        setupPlayerControls()
-        setupPlayerConstraints()
-        NSLayoutConstraint.activate(playerConstraints!)
     }
     
     public func preferredQuality(quality: qualities) {
@@ -78,6 +77,14 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
             selectedQuality = .fourthQuality
             playerFourthQualityButton.isSelected = true
         }
+    }
+    
+    public func playerReady() {
+        setupPlayer()
+        updatePlayerFrames(playerFrame!)
+        setupPlayerControls()
+        setupPlayerConstraints()
+        NSLayoutConstraint.activate(playerConstraints!)
     }
     
     public func setSliderColor(miniumTrackTintColor: UIColor?, thumbColor: UIColor?, maximumTrackTintColor: UIColor?) {
@@ -102,6 +109,12 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         return view
     }()
     
+    let playerGradientLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        return layer
+    }()
+    
     let playerControlsContainerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -119,6 +132,8 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
             self.playerForwardButton.alpha = 1
             self.PlayerBackwardButton.alpha = 1
             self.playerDownloadButton.alpha = 1
+            self.playerFullscreenButton.alpha = 1
+            self.playerDownloadProgressView.alpha = 1
             self.playerGradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         } completion: { completedAnimation in
             self.controlsShowing = true
@@ -135,24 +150,17 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
             self.playerForwardButton.alpha = 0
             self.PlayerBackwardButton.alpha = 0
             self.playerDownloadButton.alpha = 0
+            self.playerFullscreenButton.alpha = 0
+            self.playerDownloadProgressView.alpha = 0
             self.playerGradientLayer.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor]
         } completion: { completedAnimation in
             self.controlsShowing = false
         }
     }
     
-    @objc func handleControlsContainerButton() {
-        if controlsShowing == true {
-            self.hideControls()
-        } else {
-            self.showControls()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                self.hideControls()
-            }
-        }
-    }
     
-    //MARK: - UI Elements - Activity Indicator
+    
+    //MARK:- UI Elements - Activity Indicator
     
     let playerActivityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
@@ -161,7 +169,7 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         return aiv
     }()
     
-    //MARK: - UI Elements - Download Button
+    //MARK:- UI Elements - Download Button
     
     let playerDownloadButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.system)
@@ -174,22 +182,14 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         return button
     }()
     
-    @objc func handleDownload() {
-        let downloadUrl = getVideoURL()
-        if downloadCancelled {
-            if let safeResumeData = resumeData {
-                resumeDownload(url: downloadUrl, data: safeResumeData)
-            } else {
-                startDownload(url: downloadUrl)
-            }
-        } else {
-            if isDownloading {
-                pauseDownload()
-            } else {
-                startDownload(url: downloadUrl)
-            }
-        }
-    }
+    let playerDownloadProgressView: UIProgressView = {
+        let progressView = UIProgressView()
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.trackTintColor = .gray
+        progressView.progressTintColor = .white
+        progressView.isHidden = true
+        return progressView
+    }()
     
     let playerFirstQualityButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.system)
@@ -232,11 +232,178 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.axis = .horizontal
         stackview.distribution = .fillEqually
-        stackview.alignment = .leading
-        stackview.spacing = 1.0
-        stackview.layer
+        stackview.alignment = .center
+        stackview.layer.cornerRadius = 5
+        stackview.layer.borderWidth = 1
+        stackview.layer.borderColor = CGColor(gray: 1.0, alpha: 1.0)
+        stackview.isLayoutMarginsRelativeArrangement = true
+        stackview.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)
         return stackview
     }()
+    
+    let playerPlayPauseButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let config = UIImage.SymbolConfiguration.init(pointSize: 50, weight: UIImage.SymbolWeight.ultraLight)
+        let image = UIImage(named: "pause.fill", in: nil, with: config)
+        button.setImage(image, for: UIControl.State.normal)
+        button.tintColor = .white
+        button.isHidden = true
+        button.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
+        return button
+    }()
+    
+    let playerForwardButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.system)
+        let config = UIImage.SymbolConfiguration.init(pointSize: 40, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "goforward.15", in: nil, with: config)
+        button.setImage(image, for: UIControl.State.normal)
+        button.tintColor = .white
+        button.isHidden = false
+        button.addTarget(self, action: #selector(handleForwards), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let PlayerBackwardButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.system)
+        let config = UIImage.SymbolConfiguration.init(pointSize: 40, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "gobackward.15", in: nil, with: config)
+        button.setImage(image, for: UIControl.State.normal)
+        button.tintColor = .white
+        button.isHidden = false
+        button.addTarget(self, action: #selector(handleBackwards), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let playerCurrentTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "00:00"
+        label.textColor = .white
+        label.font = .boldSystemFont(ofSize: 13)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let playerSlider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        let dhColor = UIColor.init(red: 230.0/255.0, green: 145.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+        slider.minimumTrackTintColor = dhColor
+        slider.maximumTrackTintColor = .white
+        let thumbConfig = UIImage.SymbolConfiguration.init(pointSize: 15, weight: UIImage.SymbolWeight.regular)
+        let thumbImage = UIImage(named: "circle.fill", in: nil, with: thumbConfig)?.withTintColor(dhColor, renderingMode: UIImage.RenderingMode.alwaysOriginal)
+        slider.setThumbImage(thumbImage, for: .normal)
+        
+        slider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
+        
+        return slider
+    }()
+    
+    let playerDurationLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "00:00"
+        label.textColor = .white
+        label.font = .boldSystemFont(ofSize: 13)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let playerFullscreenButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let config = UIImage.SymbolConfiguration.init(pointSize: 30, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "arrow.up.left.and.arrow.down.right", in: nil, with: config)
+        button.setImage(image, for: UIControl.State.normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(handleFullscreen), for: .touchUpInside)
+        return button
+    }()
+    
+    let playerAlert: UIAlertController = {
+        let alertController = UIAlertController()
+        alertController.title = "Video saved successfully."
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        return alertController
+    }()
+    
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "currentItem.loadedTimeRanges" {
+            self.playerActivityIndicatorView.stopAnimating()
+            self.playerControlsContainerView.backgroundColor = .clear
+            if controlsShowing == true {
+                playerPlayPauseButton.isHidden = false
+            }
+            isPlaying = true
+            if let duration = player?.currentItem?.duration {
+                let seconds = CMTimeGetSeconds(duration)
+                var secondsText: String {
+                    if (Int(seconds)%60)<10 {
+                        return "00"
+                    } else {
+                        return "\(Int(seconds)%60)"
+                    }
+                }
+                if seconds.isNaN == false {
+                    let minutesText = String(format: "%02d", Int(seconds)/60)
+                    playerDurationLabel.text = "\(minutesText):\(secondsText)"
+                }
+            }
+        }
+    }
+    
+    public init(width: CGFloat, height: CGFloat) {
+        if UIApplication.shared.statusBarOrientation.isPortrait {
+            self.playerWidth = width
+            self.playerHeight = height
+            self.isFullscreen = false
+            self.playerFrame = CGRect(x: 0, y: 0, width: playerWidth, height: playerWidth/16*9)
+            super.init(frame: CGRect(x: 0, y: 0, width: playerWidth, height: playerWidth/16*9))
+        } else {
+            self.playerWidth = height
+            self.playerHeight = width
+            self.isFullscreen = true
+            self.playerFrame = CGRect(x: 0, y: 0, width: playerHeight, height: playerHeight/16*9)
+            super.init(frame: CGRect(x: 0, y: 0, width: playerHeight, height: playerHeight/16*9))
+        }
+    }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension MVP {
+    @objc func handleControlsContainerButton() {
+        if controlsShowing == true {
+            self.hideControls()
+        } else {
+            self.showControls()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                self.hideControls()
+            }
+        }
+    }
+    
+    @objc func handleDownload() {
+        let downloadUrl = getVideoURL()
+        if downloadCancelled {
+            if let safeResumeData = resumeData {
+                resumeDownload(url: downloadUrl, data: safeResumeData)
+            } else {
+                startDownload(url: downloadUrl)
+            }
+        } else {
+            if isDownloading {
+                pauseDownload()
+            } else {
+                startDownload(url: downloadUrl)
+            }
+        }
+    }
     
     @objc func handleFirstQuality() {
         handleQuality(quality: .firstQuality)
@@ -254,15 +421,6 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         handleQuality(quality: .fourthQuality)
     }
     
-    func playNewURL(URL: URL) {
-        player?.pause()
-        let time = (player?.currentItem?.currentTime())!
-        let newPlayerItem = AVPlayerItem(url: URL)
-        player?.replaceCurrentItem(with: newPlayerItem)
-        player?.seek(to: time)
-        player?.play()
-    }
-    
     func handleQuality(quality: qualities) {
         playerFirstQualityButton.isSelected = false
         playerSecondQualityButton.isSelected = false
@@ -271,42 +429,29 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         switch quality {
         case .firstQuality:
             playerFirstQualityButton.isSelected = true
-            playNewURL(URL: firstUrl!)
+            switchToNewURL(URL: firstUrl!)
         case .secondQuality:
             playerSecondQualityButton.isSelected = true
-            playNewURL(URL: secondUrl!)
+            switchToNewURL(URL: secondUrl!)
         case .thirdQuality:
             playerThirdQualityButton.isSelected = true
-            playNewURL(URL: thirdUrl!)
+            switchToNewURL(URL: thirdUrl!)
         case .fourthQuality:
             playerFourthQualityButton.isSelected = true
-            playNewURL(URL: fourthUrl!)
+            switchToNewURL(URL: fourthUrl!)
         }
     }
     
-    let playerPlayPauseButton: UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.system)
-        let config = UIImage.SymbolConfiguration.init(pointSize: 50, weight: UIImage.SymbolWeight.ultraLight)
-        let image = UIImage(named: "pause.fill", in: nil, with: config)
-        button.setImage(image, for: UIControl.State.normal)
-        button.tintColor = .white
-        button.isHidden = true
-        button.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    let playerForwardButton: UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.system)
-        let config = UIImage.SymbolConfiguration.init(pointSize: 40, weight: UIImage.SymbolWeight.regular)
-        let image = UIImage(named: "goforward.15", in: nil, with: config)
-        button.setImage(image, for: UIControl.State.normal)
-        button.tintColor = .white
-        button.isHidden = false
-        button.addTarget(self, action: #selector(handleForwards), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    func switchToNewURL(URL: URL) {
+        player?.pause()
+        let time = (player?.currentItem?.currentTime())!
+        let newPlayerItem = AVPlayerItem(url: URL)
+        player?.replaceCurrentItem(with: newPlayerItem)
+        player?.seek(to: time)
+        if isPlaying {
+            player?.play()
+        }
+    }
     
     @objc func handleForwards() {
         if let duration = player?.currentItem?.duration {
@@ -328,18 +473,6 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
             })
         }
     }
-    
-    let PlayerBackwardButton: UIButton = {
-        let button = UIButton(type: UIButton.ButtonType.system)
-        let config = UIImage.SymbolConfiguration.init(pointSize: 40, weight: UIImage.SymbolWeight.regular)
-        let image = UIImage(named: "gobackward.15", in: nil, with: config)
-        button.setImage(image, for: UIControl.State.normal)
-        button.tintColor = .white
-        button.isHidden = false
-        button.addTarget(self, action: #selector(handleBackwards), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
     
     @objc func handleBackwards() {
         if let duration = player?.currentItem?.duration {
@@ -377,33 +510,7 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         isPlaying = !isPlaying
     }
     
-    let playerCurrentTimeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "00:00"
-        label.textColor = .white
-        label.font = .boldSystemFont(ofSize: 13)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let playerSlider: UISlider = {
-        let slider = UISlider()
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        let dhColor = UIColor.init(red: 230.0/255.0, green: 145.0/255.0, blue: 90.0/255.0, alpha: 1.0)
-        slider.minimumTrackTintColor = dhColor
-        slider.maximumTrackTintColor = .white
-        let thumbConfig = UIImage.SymbolConfiguration.init(pointSize: 15, weight: UIImage.SymbolWeight.regular)
-        let thumbImage = UIImage(named: "circle.fill", in: nil, with: thumbConfig)?.withTintColor(dhColor, renderingMode: UIImage.RenderingMode.alwaysOriginal)
-        slider.setThumbImage(thumbImage, for: .normal)
-        
-        slider.addTarget(self, action: #selector(handleSliderChange), for: UIControl.Event.valueChanged)
-        
-        return slider
-    }()
-    
     @objc func handleSliderChange() {
-        player?.currentItem?.loadedTimeRanges
         if let duration = player?.currentItem?.duration {
             let totalSeconds = CMTimeGetSeconds(duration)
             let value = Float64(playerSlider.value) * totalSeconds
@@ -414,16 +521,36 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         }
     }
     
-    let playerDurationLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "00:00"
-        label.textColor = .white
-        label.font = .boldSystemFont(ofSize: 13)
-        label.textAlignment = .center
-        return label
-    }()
+    @objc func handleFullscreen() {
+        if UIApplication.shared.statusBarOrientation.isPortrait {
+            let value = UIInterfaceOrientation.landscapeRight.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        } else {
+            let value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        }
+    }
     
+    public func deviceRotated() {
+        if isFullscreen {
+            self.isFullscreen = false
+            self.playerFrame = CGRect(x: 0, y: 0, width: playerWidth, height: (playerWidth / 16) * 9)
+            let config = UIImage.SymbolConfiguration.init(pointSize: 30, weight: UIImage.SymbolWeight.regular)
+            let image = UIImage(named: "arrow.up.left.and.arrow.down.right", in: nil, with: config)
+            playerFullscreenButton.setImage(image, for: UIControl.State.normal)
+            updatePlayerFrames(playerFrame!)
+        } else {
+            self.isFullscreen = true
+            self.playerFrame = CGRect(x: 0, y: 0, width: playerHeight, height: playerWidth)
+            let config = UIImage.SymbolConfiguration.init(pointSize: 30, weight: UIImage.SymbolWeight.regular)
+            let image = UIImage(named: "arrow.down.right.and.arrow.up.left", in: nil, with: config)
+            playerFullscreenButton.setImage(image, for: UIControl.State.normal)
+            updatePlayerFrames(playerFrame!)
+        }
+    }
+}
+
+extension MVP {
     func setupPlayer() {
         if firstUrl == nil {
             playerFirstQualityButton.isHidden = true
@@ -488,26 +615,22 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         })
     }
     
-    let playerGradientLayer: CAGradientLayer = {
-        let layer = CAGradientLayer()
-        layer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        return layer
-    }()
-    
     func setupPlayerControls() {
         addSubview(playerControlsContainerView)
         
         playerControlsContainerView.layer.addSublayer(playerGradientLayer)
-        playerControlsContainerView.addSubview(playerActivityIndicatorView)
         playerControlsContainerView.addSubview(playerControlsContainerButton)
+        playerControlsContainerView.addSubview(playerActivityIndicatorView)
         playerControlsContainerView.addSubview(playerDownloadButton)
+        playerControlsContainerView.addSubview(playerDownloadProgressView)
         playerControlsContainerView.addSubview(playerQualityStackView)
         playerControlsContainerView.addSubview(playerPlayPauseButton)
         playerControlsContainerView.addSubview(playerForwardButton)
         playerControlsContainerView.addSubview(PlayerBackwardButton)
         playerControlsContainerView.addSubview(playerCurrentTimeLabel)
-        playerControlsContainerView.addSubview(playerDurationLabel)
         playerControlsContainerView.addSubview(playerSlider)
+        playerControlsContainerView.addSubview(playerDurationLabel)
+        playerControlsContainerView.addSubview(playerFullscreenButton)
         
         playerQualityStackView.insertArrangedSubview(playerFourthQualityButton, at: 0)
         playerQualityStackView.insertArrangedSubview(playerThirdQualityButton, at: 1)
@@ -517,31 +640,35 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
         backgroundColor = .black
     }
     
-    public func setPlayerFrame(playerFrame: CGRect) {
+    func updatePlayerFrames(_ playerFrame: CGRect) {
         frame = playerFrame
-        playerControlsContainerView.frame = playerFrame
+        playerControlsContainerView.frame = frame
         playerLayer?.frame = playerControlsContainerView.frame
-        playerGradientLayer.frame = playerControlsContainerView.bounds
+        playerGradientLayer.frame = playerControlsContainerView.frame
     }
     
     func setupPlayerConstraints() {
         self.playerConstraints = [
-            playerActivityIndicatorView.centerXAnchor.constraint(equalTo: playerControlsContainerView.centerXAnchor),
-            playerActivityIndicatorView.centerYAnchor.constraint(equalTo: playerControlsContainerView.centerYAnchor),
-         
             playerControlsContainerButton.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor),
-            playerControlsContainerButton.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
             playerControlsContainerButton.leftAnchor.constraint(equalTo: playerControlsContainerView.leftAnchor),
             playerControlsContainerButton.rightAnchor.constraint(equalTo: playerControlsContainerView.rightAnchor),
-                          
+            playerControlsContainerButton.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
+            
+            playerActivityIndicatorView.centerXAnchor.constraint(equalTo: playerControlsContainerView.centerXAnchor),
+            playerActivityIndicatorView.centerYAnchor.constraint(equalTo: playerControlsContainerView.centerYAnchor),
+            
             playerDownloadButton.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor, constant: +10),
             playerDownloadButton.leftAnchor.constraint(equalTo: playerControlsContainerView.leftAnchor, constant: +10),
             playerDownloadButton.heightAnchor.constraint(equalToConstant: 25),
             playerDownloadButton.widthAnchor.constraint(equalToConstant: 25),
-                  
+            
+            playerDownloadProgressView.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor, constant: +20),
+            playerDownloadProgressView.leftAnchor.constraint(equalTo: playerDownloadButton.rightAnchor, constant: +10),
+            playerDownloadProgressView.widthAnchor.constraint(equalToConstant: 75),
+            
             playerQualityStackView.topAnchor.constraint(equalTo: playerControlsContainerView.topAnchor, constant: +5),
             playerQualityStackView.rightAnchor.constraint(equalTo: playerControlsContainerView.rightAnchor, constant: -5),
-            playerQualityStackView.heightAnchor.constraint(equalToConstant: 40),
+            playerQualityStackView.heightAnchor.constraint(equalToConstant: 26.5),
          
             playerPlayPauseButton.centerXAnchor.constraint(equalTo: playerControlsContainerView.centerXAnchor),
             playerPlayPauseButton.centerYAnchor.constraint(equalTo: playerControlsContainerView.centerYAnchor),
@@ -563,49 +690,21 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
             playerCurrentTimeLabel.widthAnchor.constraint(equalToConstant: 60),
             playerCurrentTimeLabel.heightAnchor.constraint(equalToConstant: 30),
          
-            playerDurationLabel.rightAnchor.constraint(equalTo: playerControlsContainerView.rightAnchor),
+            playerDurationLabel.rightAnchor.constraint(equalTo: playerFullscreenButton.leftAnchor),
             playerDurationLabel.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
             playerDurationLabel.widthAnchor.constraint(equalToConstant: 60),
             playerDurationLabel.heightAnchor.constraint(equalToConstant: 30),
+            
+            playerFullscreenButton.rightAnchor.constraint(equalTo: playerControlsContainerView.rightAnchor, constant: -5),
+            playerFullscreenButton.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor, constant: -5),
+            playerFullscreenButton.widthAnchor.constraint(equalToConstant: 30),
+            playerFullscreenButton.heightAnchor.constraint(equalToConstant: 20),
          
             playerSlider.rightAnchor.constraint(equalTo: playerDurationLabel.leftAnchor),
             playerSlider.leftAnchor.constraint(equalTo: playerCurrentTimeLabel.rightAnchor),
             playerSlider.bottomAnchor.constraint(equalTo: playerControlsContainerView.bottomAnchor),
             playerSlider.heightAnchor.constraint(equalToConstant: 30)
         ]
-    }
-    
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "currentItem.loadedTimeRanges" {
-            self.playerActivityIndicatorView.stopAnimating()
-            self.playerControlsContainerView.backgroundColor = .clear
-            if controlsShowing == true {
-                playerPlayPauseButton.isHidden = false
-            }
-            isPlaying = true
-            if let duration = player?.currentItem?.duration {
-                let seconds = CMTimeGetSeconds(duration)
-                var secondsText: String {
-                    if (Int(seconds)%60)<10 {
-                        return "00"
-                    } else {
-                        return "\(Int(seconds)%60)"
-                    }
-                }
-                if seconds.isNaN == false {
-                    let minutesText = String(format: "%02d", Int(seconds)/60)
-                    playerDurationLabel.text = "\(minutesText):\(secondsText)"
-                }
-            }
-        }
-    }
-    
-    public init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    }
-    
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -638,12 +737,29 @@ extension MVP {
     }
     
     private func startDownload(url: URL) {
-        let downloadTask = urlSession.downloadTask(with: url)
-        downloadTask.resume()
-        self.downloadTask = downloadTask
-        self.isDownloading = true
-        self.downloadCancelled = false
-        print("Download started.")
+        
+        let documentsURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let savedURL = documentsURL.appendingPathComponent(secondUrl!.lastPathComponent)
+        if FileManager.default.fileExists(atPath: savedURL.relativePath) {
+            UISaveVideoAtPathToSavedPhotosAlbum(savedURL.relativePath, nil, nil, nil)
+            DispatchQueue.main.async {
+                UIApplication.shared.keyWindow?.rootViewController?.present(self.playerAlert, animated: true, completion: nil)
+            }
+        } else {
+            let downloadTask = urlSession.downloadTask(with: url)
+            downloadTask.resume()
+            self.downloadTask = downloadTask
+            self.isDownloading = true
+            self.downloadCancelled = false
+            print("Download started.")
+            let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
+            let image = UIImage(named: "pause.circle", in: nil, with: config)
+            DispatchQueue.main.async {
+                self.playerDownloadButton.setImage(image, for: .normal)
+                self.playerDownloadProgressView.progress = 0.0
+                self.playerDownloadProgressView.isHidden = false
+            }
+        }
     }
     
     func pauseDownload() {
@@ -653,12 +769,26 @@ extension MVP {
                     self.isDownloading = false
                     self.downloadCancelled = true
                     print("Download cannot be resumed.")
+                    let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
+                    let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
+                    DispatchQueue.main.async {
+                        self.playerDownloadButton.setImage(image, for: .normal)
+                        self.playerDownloadProgressView.progress = 0.0
+                        self.playerDownloadProgressView.isHidden = true
+                    }
                     return
                 }
                 self.isDownloading = false
                 self.downloadCancelled = true
                 print("Download paused.")
                 self.resumeData = resumeData
+                let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
+                let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
+                DispatchQueue.main.async {
+                    self.playerDownloadButton.setImage(image, for: .normal)
+                    self.playerDownloadProgressView.progress = 0.0
+                    self.playerDownloadProgressView.isHidden = true
+                }
             }
         }
     }
@@ -670,15 +800,20 @@ extension MVP {
         self.isDownloading = true
         self.downloadCancelled = false
         print("Download resumed.")
+        let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "pause.circle", in: nil, with: config)
+        DispatchQueue.main.async {
+            self.playerDownloadButton.setImage(image, for: .normal)
+            self.playerDownloadProgressView.progress = 0.0
+            self.playerDownloadProgressView.isHidden = false
+        }
     }
     
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
          if downloadTask == self.downloadTask {
             let calculatedProgress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-            print(calculatedProgress)
             DispatchQueue.main.async {
-                /*self.progressLabel.text = self.percentFormatter.string(from:
-                    NSNumber(value: calculatedProgress))*/
+                self.playerDownloadProgressView.progress = calculatedProgress
             }
         }
     }
@@ -692,6 +827,16 @@ extension MVP {
         try! FileManager.default.moveItem(at: location, to: savedURL)
         UISaveVideoAtPathToSavedPhotosAlbum(savedURL.relativePath, nil, nil, nil)
         print("Video saved.")
+        DispatchQueue.main.async {
+            UIApplication.shared.keyWindow?.rootViewController?.presentedViewController?.present(self.playerAlert, animated: true, completion: nil)
+        }
+        let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
+        DispatchQueue.main.async {
+            self.playerDownloadButton.setImage(image, for: .normal)
+            self.playerDownloadProgressView.progress = 0.0
+            self.playerDownloadProgressView.isHidden = true
+        }
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -703,6 +848,13 @@ extension MVP {
             if let resumeData = userInfo[NSURLSessionDownloadTaskResumeData] as? Data {
                 self.resumeData = resumeData
             }
+        }
+        let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
+        let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
+        DispatchQueue.main.async {
+            self.playerDownloadButton.setImage(image, for: .normal)
+            self.playerDownloadProgressView.progress = 0.0
+            self.playerDownloadProgressView.isHidden = true
         }
     }
     

@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		1742F26F3D39A2CE9AC3D1F5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		1B00B03D26D2B51400562E72 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1B00B03D26D2B51400562E72 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		1B060205851DBA46402E8FF7 /* Pods-MurkyVideoPlayer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MurkyVideoPlayer_Tests.release.xcconfig"; path = "Target Support Files/Pods-MurkyVideoPlayer_Tests/Pods-MurkyVideoPlayer_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		48721CD37E2D4692804239DB /* Pods_MurkyVideoPlayer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MurkyVideoPlayer_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6C2E97CB2C858B92BFFB63 /* Pods-MurkyVideoPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MurkyVideoPlayer_Example.release.xcconfig"; path = "Target Support Files/Pods-MurkyVideoPlayer_Example/Pods-MurkyVideoPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };

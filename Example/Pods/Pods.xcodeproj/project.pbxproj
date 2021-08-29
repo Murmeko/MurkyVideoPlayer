@@ -41,6 +41,7 @@
 		12E7B5108585875E47320E5EC8E1BB1E /* Pods-MurkyVideoPlayer_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MurkyVideoPlayer_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		191D5B29C027F1E684C3BC56B66ACF6B /* Pods-MurkyVideoPlayer_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MurkyVideoPlayer_Tests-Info.plist"; sourceTree = "<group>"; };
 		1AC4A6B69918C60A3B9D1BCA83F2BAC1 /* Pods-MurkyVideoPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MurkyVideoPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };
+		1BA4D17C26DAAEAF00FE3B67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Example/../Images.xcassets; sourceTree = "<group>"; };
 		25D92173A7226C7C82D92174F359DD56 /* MurkyVideoPlayer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MurkyVideoPlayer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		42B4918154A835A21478A85F70048DAB /* Pods-MurkyVideoPlayer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MurkyVideoPlayer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4ED8F19CE1FA75E22D46C0A0134D41EC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				55DD1F6ECA2057CA97A7E8B1C6E6486B /* MurkyVideoPlayer.swift */,
+				1BA4D17C26DAAEAF00FE3B67 /* Images.xcassets */,
 				72C808D93C4DB9F9646F11987CD73BCE /* Pod */,
 				539596C278BF9C5D250AA3966255FCEB /* Support Files */,
 			);
