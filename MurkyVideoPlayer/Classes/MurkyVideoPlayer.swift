@@ -3,7 +3,7 @@ import UIKit
 import AVFoundation
 
 public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDownloadDelegate {
-    var player: AVPlayer?
+    public var player: AVPlayer?
     var playerFrame: CGRect?
     var playerLayer: AVPlayerLayer?
     var playerWidth: CGFloat = 0
