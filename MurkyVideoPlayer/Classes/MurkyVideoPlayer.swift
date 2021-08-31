@@ -165,6 +165,7 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
     
     let playerActivityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        aiv.color = .white
         aiv.translatesAutoresizingMaskIntoConstraints = false
         aiv.startAnimating()
         return aiv
@@ -331,13 +332,17 @@ public class MVP: UIView, URLSessionDelegate, URLSessionTaskDelegate, URLSession
     }()
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "rate" {
+            if player!.rate != 0 {
+                isPlaying = true
+            }
+        }
         if keyPath == "currentItem.loadedTimeRanges" {
             self.playerActivityIndicatorView.stopAnimating()
             self.playerControlsContainerView.backgroundColor = .clear
             if controlsShowing == true {
                 playerPlayPauseButton.isHidden = false
             }
-            isPlaying = true
             if let duration = player?.currentItem?.duration {
                 let seconds = CMTimeGetSeconds(duration)
                 var secondsText: String {
@@ -458,7 +463,12 @@ extension MVP {
         let time = (player?.currentItem?.currentTime())!
         let newPlayerItem = AVPlayerItem(url: URL)
         player?.replaceCurrentItem(with: newPlayerItem)
-        player?.seek(to: time)
+        playerActivityIndicatorView.startAnimating()
+        playerPlayPauseButton.isHidden = true
+        player?.seek(to: time, completionHandler: { completedSeek in
+            self.playerActivityIndicatorView.stopAnimating()
+            self.playerPlayPauseButton.isHidden = false
+        })
         if isPlaying {
             player?.play()
         }
@@ -481,8 +491,11 @@ extension MVP {
                     return temp
                 }
             }
+            playerActivityIndicatorView.startAnimating()
+            playerPlayPauseButton.isHidden = true
             player?.seek(to: seekTime, completionHandler: { completedSeek in
-                
+                self.playerActivityIndicatorView.stopAnimating()
+                self.playerPlayPauseButton.isHidden = false
             })
         }
     }
@@ -504,8 +517,11 @@ extension MVP {
                     return temp
                 }
             }
+            playerActivityIndicatorView.startAnimating()
+            playerPlayPauseButton.isHidden = true
             player?.seek(to: seekTime, completionHandler: { completedSeek in
-                
+                self.playerActivityIndicatorView.stopAnimating()
+                self.playerPlayPauseButton.isHidden = false
             })
         }
     }
@@ -513,18 +529,21 @@ extension MVP {
     @objc func handlePlayPause() {
         controlsTimer?.invalidate()
         controlsTimer  = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideControls), userInfo: nil, repeats: false)
-        if isPlaying == true {
+        if isPlaying {
+            isPlaying = false
             player?.pause()
             let config = UIImage.SymbolConfiguration.init(pointSize: 50, weight: UIImage.SymbolWeight.ultraLight)
             let image = UIImage(named: "play.fill", in: nil, with: config)
             playerPlayPauseButton.setImage(image, for: UIControl.State.normal)
+            
         } else {
+            isPlaying = true
             player?.play()
             let config = UIImage.SymbolConfiguration.init(pointSize: 50, weight: UIImage.SymbolWeight.ultraLight)
             let image = UIImage(named: "pause.fill", in: nil, with: config)
             playerPlayPauseButton.setImage(image, for: UIControl.State.normal)
+            
         }
-        isPlaying = !isPlaying
     }
     
     @objc func handleSliderChange() {
@@ -534,9 +553,7 @@ extension MVP {
             let totalSeconds = CMTimeGetSeconds(duration)
             let value = Float64(playerSlider.value) * totalSeconds
             let seekTime = CMTime(value: Int64(value), timescale: 1)
-            player?.seek(to: seekTime, completionHandler: { completedSeek in
-                
-            })
+            player?.seek(to: seekTime)
         }
     }
     
@@ -613,9 +630,10 @@ extension MVP {
         playerLayer = AVPlayerLayer(player: player)
         self.layer.addSublayer(playerLayer!)
         player?.play()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             self.hideControls()
         }
+        player!.addObserver(self, forKeyPath: "rate", options: .initial, context: nil)
         player?.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: .new, context: nil)
         let interval = CMTime(value: 1, timescale: 2)
         player?.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { progressTime in
