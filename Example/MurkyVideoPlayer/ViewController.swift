@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     
     func updateFrame() {
         self.playerView.frame = view.frame
-        self.playerView.topAnchor.constraint(equalTo: view.topAnchor,constant: view.safeAreaInsets.top).isActive = true
+        self.playerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -43,6 +43,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(playerView)
+        playerView.backgroundColor = .purple
         updateFrame()
         setupPlayer()
         playerView.addSubview(player!)
