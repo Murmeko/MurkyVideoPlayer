@@ -796,7 +796,6 @@ extension MVP {
             self.downloadTask = downloadTask
             self.isDownloading = true
             self.downloadCancelled = false
-            print("Download started.")
             let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
             let image = UIImage(named: "pause.circle", in: nil, with: config)
             DispatchQueue.main.async {
@@ -813,7 +812,6 @@ extension MVP {
                 guard let resumeData = resumeDataOrNil else {
                     self.isDownloading = false
                     self.downloadCancelled = true
-                    print("Download cannot be resumed.")
                     let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
                     let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
                     DispatchQueue.main.async {
@@ -825,7 +823,6 @@ extension MVP {
                 }
                 self.isDownloading = false
                 self.downloadCancelled = true
-                print("Download paused.")
                 self.resumeData = resumeData
                 let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
                 let image = UIImage(named: "arrow.down.circle", in: nil, with: config)
@@ -844,7 +841,6 @@ extension MVP {
         self.downloadTask = downloadTask
         self.isDownloading = true
         self.downloadCancelled = false
-        print("Download resumed.")
         let config = UIImage.SymbolConfiguration.init(pointSize: 25, weight: UIImage.SymbolWeight.regular)
         let image = UIImage(named: "pause.circle", in: nil, with: config)
         DispatchQueue.main.async {
@@ -866,12 +862,10 @@ extension MVP {
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         self.isDownloading = false
         self.downloadCancelled = false
-        print("Download complete.")
         let documentsURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         let savedURL = documentsURL.appendingPathComponent(secondUrl!.lastPathComponent)
         try! FileManager.default.moveItem(at: location, to: savedURL)
         UISaveVideoAtPathToSavedPhotosAlbum(savedURL.relativePath, nil, nil, nil)
-        print("Video saved.")
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.presentedViewController?.present(self.playerAlert, animated: true, completion: nil)
         }
@@ -887,7 +881,6 @@ extension MVP {
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         self.isDownloading = false
         self.downloadCancelled = true
-        print("Download failed.")
         if let safeError = error {
             let userInfo = (safeError as NSError).userInfo
             if let resumeData = userInfo[NSURLSessionDownloadTaskResumeData] as? Data {
