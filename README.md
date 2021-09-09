@@ -12,7 +12,7 @@ MurkyVideoPlayer is an opensource video player library written in Swift.
 <p float="left">
   <img src="https://media1.giphy.com/media/INBJVV3vcW8fxrAap0/giphy.gif?cid=790b7611c7706ae57b327762d2b2d6ea2f6275d79d5ad146&rid=giphy.gif" width="180" height="320"  />
   <img src="https://media4.giphy.com/media/BUilIIQ6YVeCTBeXun/giphy.gif?cid=790b7611f41783c25de58dc0eed1d70acf84b89dfa9258de&rid=giphy.gif" width="180" height="320"  />
-  <img src="https://media1.giphy.com/media/jc3fI2vcn9PshYa2vZ/giphy.gif?cid=790b761148434a59dfcbdbb48eae71a7d41418e0ce22bad9&rid=giphy.gif" width="440" height="320"  />
+  <img src="https://media1.giphy.com/media/jc3fI2vcn9PshYa2vZ/giphy.gif?cid=790b761148434a59dfcbdbb48eae71a7d41418e0ce22bad9&rid=giphy.gif" width="320" height="180"  />
 </p>
 
 ## Requirements
