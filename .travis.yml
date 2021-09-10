@@ -6,8 +6,5 @@ env:
   - TEST_SDK=iphonesimulator14.5 OS=13.0 NAME='iPhone 8'
 
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/SwiftyolLibrary.xcworkspace -scheme SwiftyolLibrary-Example -sdk $TEST_SDK -destination "platform=iOS Simulator,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | xcpretty
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MurkyVideoPlayer.xcworkspace -scheme MurkyVideoPlayer-Example -sdk $TEST_SDK -destination "platform=iOS Simulator,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | xcpretty
 - pod lib lint
-after_success:
-- slather
-- bash <(curl -s https://codecov.io/bash) -t {e04b9a5d-66e2-4a9c-80ea-57dfa33043be} -f reports/cobertura.xml -X coveragepy -X gcov -X xcode
