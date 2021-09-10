@@ -1,12 +1,13 @@
 # MurkyVideoPlayer
 
+[![Platform](https://img.shields.io/cocoapods/p/MurkyVideoPlayer.svg?style=flat)](https://cocoapods.org/pods/MurkyVideoPlayer)
+[![Version](https://img.shields.io/cocoapods/v/MurkyVideoPlayer.svg?style=flat)](https://cocoapods.org/pods/MurkyVideoPlayer)
 [![Bitrise Build Status](https://app.bitrise.io/app/079ed0572add1f28/status.svg?token=zlOLIxvdLAGujKB-bndc1Q)](https://app.bitrise.io/app/079ed0572add1f28)
 [![Travis Build Status](https://app.travis-ci.com/Murmeko/MurkyVideoPlayer.svg?branch=main)](https://app.travis-ci.com/Murmeko/MurkyVideoPlayer)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e9b0082a11c8fe51b3c9/maintainability)](https://codeclimate.com/github/Murmeko/MurkyVideoPlayer/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e9b0082a11c8fe51b3c9/test_coverage)](https://codeclimate.com/github/Murmeko/MurkyVideoPlayer/test_coverage)
-[![Version](https://img.shields.io/cocoapods/v/MurkyVideoPlayer.svg?style=flat)](https://cocoapods.org/pods/MurkyVideoPlayer)
 [![License](https://img.shields.io/cocoapods/l/MurkyVideoPlayer.svg?style=flat)](https://cocoapods.org/pods/MurkyVideoPlayer)
-[![Platform](https://img.shields.io/cocoapods/p/MurkyVideoPlayer.svg?style=flat)](https://cocoapods.org/pods/MurkyVideoPlayer)
+
 
 MurkyVideoPlayer is an opensource video player library written in Swift.
 <p float="left">
