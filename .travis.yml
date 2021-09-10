@@ -7,4 +7,3 @@ env:
 
 script:
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MurkyVideoPlayer.xcworkspace -scheme MurkyVideoPlayer-Example -sdk $TEST_SDK -destination "platform=iOS Simulator,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES | xcpretty
-- pod lib lint
