@@ -21,12 +21,12 @@ class ViewController: UIViewController {
     func setupPlayer() {
         player = MVP.init(width: playerView.frame.width, height: playerView.frame.height)
         player?.setQualityNames(firstName: "FHD", secondName: "HD", thirdName: "SD", fourthName: "MP3")
-        player?.setQualityURLs(firstURL: nil, secondURL: nil, thirdURL: nil, fourthURL: nil)
+        let url = URL(string: "https://d27urz3c38hyx4.cloudfront.net/file/data/@admin/kvwxrnfrsoxpqgsqioii/PHID-FILE-gua5kuqcx7umza4mdnzx/Crab_Rave_Meme_Template.mp4")
+        player?.setQualityURLs(firstURL: url, secondURL: nil, thirdURL: nil, fourthURL: nil)
     }
     
     func updateFrame() {
         self.playerView.frame = view.frame
-        let guide = self.view.safeAreaLayoutGuide
     }
     
     override var prefersStatusBarHidden: Bool {

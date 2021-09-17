@@ -552,8 +552,10 @@ extension MVP {
         if let duration = player?.currentItem?.duration {
             let totalSeconds = CMTimeGetSeconds(duration)
             let value = Float64(playerSlider.value) * totalSeconds
-            let seekTime = CMTime(value: Int64(value), timescale: 1)
-            player?.seek(to: seekTime)
+            if value.isNaN == false {
+                let seekTime = CMTime(value: Int64(value), timescale: 1)
+                player?.seek(to: seekTime)
+            }
         }
     }
     
